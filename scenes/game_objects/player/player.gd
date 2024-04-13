@@ -17,10 +17,15 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var is_carrying = false
 var current_highlight: Node3D
+var dropoff_pipe: OutputPipe
 
 func try_interaction():
 	# Check if there is interactable objects. if not then throw the item
-	# TODO check
+	if dropoff_pipe:
+		current_highlight.queue_free()
+		current_highlight = null
+		is_carrying = false
+		return
 	var body = current_highlight as RigidBody3D
 	body.freeze = false
 	body.follow_component.target = null
@@ -52,6 +57,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("Action"):
 		handle_action()
 	
+	if global_position.y < -10:
+		global_position = Vector3(0,1,0)
+
 	
 	if is_carrying:
 		return

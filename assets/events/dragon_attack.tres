@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Event" load_steps=2 format=3 uid="uid://b4bex6v3iwqfv"]
+
+[ext_resource type="Script" path="res://assets/events/event.gd" id="1_urf75"]
+
+[resource]
+script = ExtResource("1_urf75")
+name = "Dragon Attack"
+strength = 5
+wisdom = 3
+charisma = 2
+reward = 1000
+description = "A fierce dragon is terrorizing the local villages."

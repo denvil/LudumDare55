@@ -1,8 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4eyvnx1v3ooj"]
+[gd_scene load_steps=18 format=3 uid="uid://b4eyvnx1v3ooj"]
 
 [ext_resource type="PackedScene" uid="uid://ckjnskd75oa5a" path="res://scenes/game_objects/player/player.tscn" id="1_017ut"]
+[ext_resource type="PackedScene" uid="uid://cu6wcetkipspk" path="res://scenes/managers/game_manager.tscn" id="1_cpc8u"]
 [ext_resource type="Shader" path="res://scenes/sandbox/edge.gdshader" id="2_0wb7c"]
-[ext_resource type="PackedScene" uid="uid://spf5emly7vw1" path="res://scenes/game_objects/hero/hero.tscn" id="3_mmml3"]
+[ext_resource type="Resource" uid="uid://b4bex6v3iwqfv" path="res://assets/events/dragon_attack.tres" id="2_8sxg8"]
+[ext_resource type="PackedScene" uid="uid://bvk15f7ibgsru" path="res://scenes/game_objects/pipe/output_pipe.tscn" id="5_fortd"]
+[ext_resource type="PackedScene" uid="uid://o5ba25yg3ncd" path="res://scenes/game_objects/pipe/input.tscn" id="5_i84w4"]
+[ext_resource type="Script" path="res://scenes/main/follow_camera.gd" id="6_5bwi0"]
+[ext_resource type="FontFile" uid="uid://daq4is1o78j0c" path="res://assets/Bitfantasy.ttf" id="8_qqj61"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2nhaq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -12,24 +17,23 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_2nhaq")
 
 [sub_resource type="Environment" id="Environment_r5kis"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.556863, 0.792157, 0.901961, 1)
 sky = SubResource("Sky_n1d24")
-tonemap_mode = 2
+tonemap_mode = 3
 glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gmfii"]
 size = Vector2(10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54f87"]
-albedo_color = Color(0.462745, 0.682353, 1, 1)
+albedo_color = Color(0.129412, 0.619608, 0.737255, 1)
+emission = Color(0.00784314, 0.188235, 0.278431, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i5uw4"]
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_8aeup"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ex47m"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxMesh" id="BoxMesh_ryg0i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7pbc"]
 shader = ExtResource("2_0wb7c")
@@ -37,7 +41,13 @@ shader_parameter/edge_color = Color(0, 0, 0, 1)
 shader_parameter/threshold = 0.575
 shader_parameter/blend = 0.16
 
+[sub_resource type="SphereMesh" id="SphereMesh_nahx7"]
+radius = 50.0
+
 [node name="Main" type="Node3D"]
+
+[node name="GameManager" parent="." instance=ExtResource("1_cpc8u")]
+event_db = Array[Resource("res://assets/events/event.gd")]([ExtResource("2_8sxg8")])
 
 [node name="Player" parent="." instance=ExtResource("1_017ut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -58,17 +68,54 @@ surface_material_override/0 = SubResource("StandardMaterial3D_54f87")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_i5uw4")
 
+[node name="Items" type="Node3D" parent="." groups=["SceneItems"]]
+
+[node name="Input" parent="." instance=ExtResource("5_i84w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 0)
+
+[node name="Output" type="Node3D" parent="."]
+
+[node name="OutputPipe" parent="Output" instance=ExtResource("5_fortd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07575, -0.45957, 0)
+
+[node name="OutputPipe2" parent="Output" instance=ExtResource("5_fortd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07575, -0.45957, 2.47823)
+
+[node name="OutputPipe3" parent="Output" instance=ExtResource("5_fortd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07575, -0.45957, -2.57601)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.830129, 0.557571, 0, -0.557571, 0.830129, 0, 4.99918, 7.91051)
+script = ExtResource("6_5bwi0")
+offset = Vector3(0, 4.99918, 7.91051)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32708, 0.729816, 0)
-mesh = SubResource("BoxMesh_8aeup")
+[node name="Backboard" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421445, 0, -5.46026)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Backboard"]
+transform = Transform3D(8.92863, 0, 0, 0, 5.114, 0, 0, 0, 0.288263, 0, 2.35639, 0)
+mesh = SubResource("BoxMesh_ryg0i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ex47m")
+[node name="PipeTopic1" type="Label3D" parent="Backboard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80036, 4.16868, 1.03152)
+text = "I"
+font = ExtResource("8_qqj61")
+font_size = 92
+uppercase = true
+
+[node name="Description1" type="Label3D" parent="Backboard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77995, 3.63657, 1.03152)
+text = "Dragon attack"
+font = ExtResource("8_qqj61")
+font_size = 62
+uppercase = true
+
+[node name="Reward" type="Label3D" parent="Backboard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77995, 2.02662, 1.03152)
+modulate = Color(1, 0.894118, 0.341176, 1)
+text = "500g"
+font = ExtResource("8_qqj61")
+font_size = 62
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -81,10 +128,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Items" type="Node3D" parent="." groups=["SceneItems"]]
+[node name="Node3D" type="Node3D" parent="."]
 
-[node name="Hero" parent="Items" instance=ExtResource("3_mmml3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
-
-[node name="Hero2" parent="Items" instance=ExtResource("3_mmml3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50583, 1, -2)
+[node name="Planet" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.8871, 0)
+mesh = SubResource("SphereMesh_nahx7")
+skeleton = NodePath("../..")
