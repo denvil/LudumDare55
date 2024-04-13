@@ -56,14 +56,17 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="Continue" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
 [node name="Options" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
 [node name="Quit" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to menu"
 

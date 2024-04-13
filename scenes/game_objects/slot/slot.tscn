@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4fpybsu1l5cr"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/slot/slot.gd" id="1_o0sj3"]
+[ext_resource type="FontFile" uid="uid://daq4is1o78j0c" path="res://assets/Bitfantasy.ttf" id="1_r4w8g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ln6kv"]
+shading_mode = 0
+albedo_color = Color(0.129412, 0.619608, 0.737255, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vxkha"]
+size = Vector2(1, 2)
+center_offset = Vector3(0.5, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhc65"]
+albedo_color = Color(1, 0.717647, 0.0117647, 1)
+
+[node name="Slot" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.79328, 3.28096, -0.78056)
+script = ExtResource("1_o0sj3")
+
+[node name="SlotNumber" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.069, 1.032)
+text = "I"
+font = ExtResource("1_r4w8g")
+font_size = 92
+uppercase = true
+
+[node name="Details" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Title" type="Label3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537, 1.032)
+text = "Dragon attack"
+font = ExtResource("1_r4w8g")
+font_size = 62
+uppercase = true
+
+[node name="Difficulty" type="Label3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.715373, 1.032)
+modulate = Color(1, 0.0392157, 0.0470588, 1)
+text = "Hard"
+font = ExtResource("1_r4w8g")
+font_size = 62
+uppercase = true
+
+[node name="Description" type="Label3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0187323, 1.032)
+text = "A fierce dragon is terrorizing the local villages."
+font = ExtResource("1_r4w8g")
+font_size = 62
+autowrap_mode = 2
+
+[node name="Reward" type="Label3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.073, 1.032)
+modulate = Color(1, 0.894118, 0.341176, 1)
+text = "500g"
+font = ExtResource("1_r4w8g")
+font_size = 62
+
+[node name="ProgressGood" type="MeshInstance3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.0802546, 0, 1, -3.50804e-09, -0.0328767, -1.484, 1.03186)
+material_override = SubResource("StandardMaterial3D_ln6kv")
+mesh = SubResource("PlaneMesh_vxkha")
+skeleton = NodePath("../..")
+
+[node name="ProgressBad" type="MeshInstance3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(-0.91, 0, 0, 0, -4.37114e-08, 0.08, 0, 1, 3.49691e-09, -0.0328767, -1.484, 1.03186)
+material_override = SubResource("StandardMaterial3D_nhc65")
+mesh = SubResource("PlaneMesh_vxkha")
+skeleton = NodePath("../..")
+
+[node name="Progress text" type="Label3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25337, 1.032)
+modulate = Color(1, 0.894118, 0.341176, 1)
+text = "Gathering intelligence from tavern tales and drunken whispers."
+font = ExtResource("1_r4w8g")
+font_size = 62
+autowrap_mode = 2

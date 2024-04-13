@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HeroResource" load_steps=2 format=3 uid="uid://cmayp3y163u8o"]
+
+[ext_resource type="Script" path="res://assets/heroresource.gd" id="1_ce5b3"]
+
+[resource]
+script = ExtResource("1_ce5b3")
+name = "Martin The Mighty"
+strength = 2
+wisdom = 1
+charisma = 1
+price = 0

@@ -9,4 +9,5 @@ strength = 5
 wisdom = 3
 charisma = 2
 reward = 1000
+difficulty = 0.9
 description = "A fierce dragon is terrorizing the local villages."

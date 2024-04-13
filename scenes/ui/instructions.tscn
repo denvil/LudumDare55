@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://rk2mhtxrl5om"]
+
+[ext_resource type="Script" path="res://scenes/ui/instructions.gd" id="1_rvg8f"]
+
+[node name="Instructions" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_rvg8f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 62
+text = "Welcome"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "I see that my aim was perfect as always. Welcome to Nexus. This is where you job starts as hero manager. There is a world in peril below you and they are summoning heroes to help them. 
+
+Deploy your heroes, gain experience and level up them. Save the world or face peril!
+
+Your first hero awaits in summoning portal / shop
+"
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_button_pressed"]

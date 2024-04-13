@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+func _ready():
+	%Play.grab_focus()
 
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")

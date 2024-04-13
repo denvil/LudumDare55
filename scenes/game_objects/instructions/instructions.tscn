@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ok1vypv8meey"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/instructions/instructions.gd" id="1_vydva"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kpliq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8gsur"]
+size = Vector3(3.32983, 1.64734, 2.64233)
+
+[node name="Instructions" type="Node3D"]
+script = ExtResource("1_vydva")
+
+[node name="Instructions" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.280555, 0, 0, 0, 0.248251, 0, 0, 0, 0.354276, 0, 0, 0)
+mesh = SubResource("BoxMesh_kpliq")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15032, 0)
+text = "Press Control"
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0357666, 0.323669, -0.195923)
+shape = SubResource("BoxShape3D_8gsur")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

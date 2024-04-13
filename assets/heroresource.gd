@@ -1,10 +1,8 @@
 extends Resource
-class_name Event
+class_name HeroResource
 
 @export var name: String
 @export var strength: int
 @export var wisdom: int
 @export var charisma: int
-@export var reward: int
-@export var difficulty: float
-@export_multiline var description: String
+@export var price: int

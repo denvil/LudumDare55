@@ -1,0 +1,208 @@
+[gd_resource type="Resource" script_class="EventPool" load_steps=23 format=3 uid="uid://63mwu0qrtmp7"]
+
+[ext_resource type="Script" path="res://assets/events/event.gd" id="1_abipv"]
+[ext_resource type="Script" path="res://assets/events/event_pool.gd" id="1_q7ora"]
+
+[sub_resource type="Resource" id="Resource_a4jp6"]
+script = ExtResource("1_abipv")
+name = "Dragon's Lair"
+strength = 5
+wisdom = 2
+charisma = 1
+reward = 1500
+difficulty = 0.9
+description = "Defeat the dragon and claim its treasure."
+
+[sub_resource type="Resource" id="Resource_b4u4t"]
+script = ExtResource("1_abipv")
+name = "Peace Talks"
+strength = 1
+wisdom = 4
+charisma = 5
+reward = 1000
+difficulty = 0.7
+description = "Mediate a truce between warring factions."
+
+[sub_resource type="Resource" id="Resource_fwn2h"]
+script = ExtResource("1_abipv")
+name = "Thief in the Night"
+strength = 2
+wisdom = 3
+charisma = 4
+reward = 200
+difficulty = 0.3
+description = "Catch the master thief before another gem is stolen."
+
+[sub_resource type="Resource" id="Resource_0s3cv"]
+script = ExtResource("1_abipv")
+name = "The Cursed Village"
+strength = 3
+wisdom = 5
+charisma = 1
+reward = 1100
+difficulty = 0.8
+description = "Lift the curse that plagues the village."
+
+[sub_resource type="Resource" id="Resource_wsrp2"]
+script = ExtResource("1_abipv")
+name = "Royal Banquet"
+strength = 1
+wisdom = 2
+charisma = 5
+reward = 800
+difficulty = 0.5
+description = "Ensure the royal banquet goes off without a hitch."
+
+[sub_resource type="Resource" id="Resource_ofoey"]
+script = ExtResource("1_abipv")
+name = "Lost Artifact"
+strength = 4
+wisdom = 5
+charisma = 2
+reward = 1200
+difficulty = 0.85
+description = "Recover the lost artifact from ancient ruins."
+
+[sub_resource type="Resource" id="Resource_ha8jj"]
+script = ExtResource("1_abipv")
+name = "Ghost Ship"
+strength = 3
+wisdom = 4
+charisma = 1
+reward = 1000
+difficulty = 0.75
+description = "Explore the ghost ship and uncover its mysteries."
+
+[sub_resource type="Resource" id="Resource_v3aaf"]
+script = ExtResource("1_abipv")
+name = "King's Assassin"
+strength = 4
+wisdom = 3
+charisma = 3
+reward = 1300
+difficulty = 0.8
+description = "Stop the assassin before the king is killed."
+
+[sub_resource type="Resource" id="Resource_a44fd"]
+script = ExtResource("1_abipv")
+name = "Magical Malady"
+strength = 2
+wisdom = 5
+charisma = 3
+reward = 950
+difficulty = 0.65
+description = "Cure the prince of his mysterious magical illness."
+
+[sub_resource type="Resource" id="Resource_2f13k"]
+script = ExtResource("1_abipv")
+name = "Forgotten Library"
+strength = 1
+wisdom = 5
+charisma = 1
+reward = 100
+difficulty = 0.1
+description = "Find and retrieve the ancient tome from the forgotten library."
+
+[sub_resource type="Resource" id="Resource_rytma"]
+script = ExtResource("1_abipv")
+name = "The Great Heist"
+strength = 2
+wisdom = 3
+charisma = 5
+reward = 1200
+difficulty = 0.8
+description = "Plan and execute the heist of the century."
+
+[sub_resource type="Resource" id="Resource_gjbvc"]
+script = ExtResource("1_abipv")
+name = "Siege Defense"
+strength = 5
+wisdom = 3
+charisma = 2
+reward = 1400
+difficulty = 0.95
+description = "Defend the city walls from the besieging army."
+
+[sub_resource type="Resource" id="Resource_k4jwr"]
+script = ExtResource("1_abipv")
+name = "Witch's Brew"
+strength = 1
+wisdom = 5
+charisma = 2
+reward = 300
+difficulty = 0.2
+description = "Help the witch concoct her legendary brew."
+
+[sub_resource type="Resource" id="Resource_gmt58"]
+script = ExtResource("1_abipv")
+name = "Diplomatic Escort"
+strength = 3
+wisdom = 2
+charisma = 4
+reward = 1000
+difficulty = 0.6
+description = "Safely escort the diplomat through hostile territory."
+
+[sub_resource type="Resource" id="Resource_snvsn"]
+script = ExtResource("1_abipv")
+name = "Bandit King"
+strength = 4
+wisdom = 1
+charisma = 3
+reward = 1100
+difficulty = 0.85
+description = "Defeat the bandit king and liberate the village."
+
+[sub_resource type="Resource" id="Resource_jtku3"]
+script = ExtResource("1_abipv")
+name = "Sacred Grove"
+strength = 2
+wisdom = 4
+charisma = 1
+reward = 950
+difficulty = 0.65
+description = "Protect the sacred grove from corrupt invaders."
+
+[sub_resource type="Resource" id="Resource_yhdxd"]
+script = ExtResource("1_abipv")
+name = "Desert Oasis"
+strength = 2
+wisdom = 3
+charisma = 4
+reward = 900
+difficulty = 0.55
+description = "Discover the secrets of the hidden desert oasis."
+
+[sub_resource type="Resource" id="Resource_y6rwn"]
+script = ExtResource("1_abipv")
+name = "Mountain Summit"
+strength = 5
+wisdom = 2
+charisma = 1
+reward = 1300
+difficulty = 0.9
+description = "Scale the mountain and plant the flag at its summit."
+
+[sub_resource type="Resource" id="Resource_soe4t"]
+script = ExtResource("1_abipv")
+name = "Ancient Prophecy"
+strength = 1
+wisdom = 5
+charisma = 4
+reward = 1150
+difficulty = 0.75
+description = "Unravel the ancient prophecy to prevent disaster."
+
+[sub_resource type="Resource" id="Resource_vqqfl"]
+script = ExtResource("1_abipv")
+name = "Pirate Negotiations"
+strength = 2
+wisdom = 3
+charisma = 5
+reward = 400
+difficulty = 0.2
+description = "Rescue the hostages by negotiating with the pirates."
+
+[resource]
+script = ExtResource("1_q7ora")
+events = Array[ExtResource("1_abipv")]([SubResource("Resource_a4jp6"), SubResource("Resource_b4u4t"), SubResource("Resource_fwn2h"), SubResource("Resource_0s3cv"), SubResource("Resource_wsrp2"), SubResource("Resource_ofoey"), SubResource("Resource_ha8jj"), SubResource("Resource_v3aaf"), SubResource("Resource_a44fd"), SubResource("Resource_2f13k"), SubResource("Resource_rytma"), SubResource("Resource_gjbvc"), SubResource("Resource_k4jwr"), SubResource("Resource_gmt58"), SubResource("Resource_snvsn"), SubResource("Resource_jtku3"), SubResource("Resource_yhdxd"), SubResource("Resource_y6rwn"), SubResource("Resource_soe4t"), SubResource("Resource_vqqfl")])

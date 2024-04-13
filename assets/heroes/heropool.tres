@@ -1,0 +1,168 @@
+[gd_resource type="Resource" script_class="HeroPool" load_steps=23 format=3 uid="uid://cbxww83xwb3ki"]
+
+[ext_resource type="Script" path="res://assets/heropool.gd" id="1_pfxe1"]
+[ext_resource type="Script" path="res://assets/heroresource.gd" id="1_rt5hp"]
+
+[sub_resource type="Resource" id="Resource_grfxp"]
+script = ExtResource("1_rt5hp")
+name = "Eldric the Brave"
+strength = 5
+wisdom = 2
+charisma = 3
+price = 1000
+
+[sub_resource type="Resource" id="Resource_8oxux"]
+script = ExtResource("1_rt5hp")
+name = "Mira of the Light"
+strength = 2
+wisdom = 5
+charisma = 3
+price = 1000
+
+[sub_resource type="Resource" id="Resource_yhiqe"]
+script = ExtResource("1_rt5hp")
+name = "Zara the Cunning"
+strength = 3
+wisdom = 4
+charisma = 5
+price = 1200
+
+[sub_resource type="Resource" id="Resource_m2fvg"]
+script = ExtResource("1_rt5hp")
+name = "Thorin Ironfist"
+strength = 5
+wisdom = 3
+charisma = 1
+price = 900
+
+[sub_resource type="Resource" id="Resource_4blx2"]
+script = ExtResource("1_rt5hp")
+name = "Alia the Enchantress"
+strength = 1
+wisdom = 5
+charisma = 4
+price = 1000
+
+[sub_resource type="Resource" id="Resource_4g4tv"]
+script = ExtResource("1_rt5hp")
+name = "Galen the Quick"
+strength = 3
+wisdom = 3
+charisma = 4
+price = 1000
+
+[sub_resource type="Resource" id="Resource_8e1d0"]
+script = ExtResource("1_rt5hp")
+name = "Felix the Fortunate"
+strength = 2
+wisdom = 3
+charisma = 5
+price = 1000
+
+[sub_resource type="Resource" id="Resource_gniyb"]
+script = ExtResource("1_rt5hp")
+name = "Serena Starfall"
+strength = 1
+wisdom = 5
+charisma = 3
+price = 900
+
+[sub_resource type="Resource" id="Resource_ciqst"]
+script = ExtResource("1_rt5hp")
+name = "Brogan Ironfist"
+strength = 5
+wisdom = 4
+charisma = 1
+price = 1000
+
+[sub_resource type="Resource" id="Resource_mupd3"]
+script = ExtResource("1_rt5hp")
+name = "Lila the Swift"
+strength = 2
+wisdom = 3
+charisma = 5
+price = 1000
+
+[sub_resource type="Resource" id="Resource_ddbib"]
+script = ExtResource("1_rt5hp")
+name = "Orin Flamebearer"
+strength = 2
+wisdom = 5
+charisma = 2
+price = 900
+
+[sub_resource type="Resource" id="Resource_qv3pl"]
+script = ExtResource("1_rt5hp")
+name = "Eva the Fair"
+strength = 1
+wisdom = 4
+charisma = 5
+price = 1000
+
+[sub_resource type="Resource" id="Resource_neoms"]
+script = ExtResource("1_rt5hp")
+name = "Grimm the Stout"
+strength = 4
+wisdom = 2
+charisma = 3
+price = 900
+
+[sub_resource type="Resource" id="Resource_mslxn"]
+script = ExtResource("1_rt5hp")
+name = "Niles the Keeper"
+strength = 1
+wisdom = 5
+charisma = 4
+price = 1000
+
+[sub_resource type="Resource" id="Resource_4rvg1"]
+script = ExtResource("1_rt5hp")
+name = "Soren Shadowwalker"
+strength = 4
+wisdom = 3
+charisma = 2
+price = 900
+
+[sub_resource type="Resource" id="Resource_xhxm7"]
+script = ExtResource("1_rt5hp")
+name = "Myra of the Winds"
+strength = 2
+wisdom = 5
+charisma = 3
+price = 1000
+
+[sub_resource type="Resource" id="Resource_njbq6"]
+script = ExtResource("1_rt5hp")
+name = "Lorcan the Fierce"
+strength = 5
+wisdom = 1
+charisma = 3
+price = 900
+
+[sub_resource type="Resource" id="Resource_alucf"]
+script = ExtResource("1_rt5hp")
+name = "Petra Earthshaker"
+strength = 3
+wisdom = 5
+charisma = 1
+price = 900
+
+[sub_resource type="Resource" id="Resource_h781i"]
+script = ExtResource("1_rt5hp")
+name = "Quint the Clever"
+strength = 2
+wisdom = 5
+charisma = 4
+price = 1100
+
+[sub_resource type="Resource" id="Resource_wl7ky"]
+script = ExtResource("1_rt5hp")
+name = "Jasper of the Glade"
+strength = 3
+wisdom = 4
+charisma = 2
+price = 900
+
+[resource]
+script = ExtResource("1_pfxe1")
+heropool = Array[ExtResource("1_rt5hp")]([SubResource("Resource_grfxp"), SubResource("Resource_8oxux"), SubResource("Resource_yhiqe"), SubResource("Resource_m2fvg"), SubResource("Resource_4blx2"), SubResource("Resource_4g4tv"), SubResource("Resource_8e1d0"), SubResource("Resource_gniyb"), SubResource("Resource_ciqst"), SubResource("Resource_mupd3"), SubResource("Resource_ddbib"), SubResource("Resource_qv3pl"), SubResource("Resource_neoms"), SubResource("Resource_mslxn"), SubResource("Resource_4rvg1"), SubResource("Resource_xhxm7"), SubResource("Resource_njbq6"), SubResource("Resource_alucf"), SubResource("Resource_h781i"), SubResource("Resource_wl7ky")])

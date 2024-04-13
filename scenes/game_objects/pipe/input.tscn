@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://o5ba25yg3ncd"]
+[gd_scene load_steps=4 format=3 uid="uid://o5ba25yg3ncd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v38yn"]
+
+[sub_resource type="Curve" id="Curve_00ofk"]
+_data = [Vector2(0, 0.246753), 0.0, 0.0, 0, 0, Vector2(0.997403, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_pckgb"]
+radial_steps = 10
+curve = SubResource("Curve_00ofk")
 
 [node name="Input" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_v38yn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.28533e-07, -3.16008, 0, 2.9405, -1.38131e-07, 0, 0, 0, 3.4925, -1.51532, 1.00942, 0)
+mesh = SubResource("TubeTrailMesh_pckgb")

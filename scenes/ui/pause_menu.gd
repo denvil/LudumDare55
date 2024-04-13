@@ -2,7 +2,7 @@ extends CanvasLayer
 
 func _ready():
 	get_tree().paused = true
-	
+	%Continue.grab_focus()
 
 
 func _on_continue_pressed():

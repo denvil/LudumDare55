@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-
+var instructions_screen_scene = preload("res://scenes/ui/instructions.tscn")
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var visuals = $Visuals
@@ -14,18 +14,36 @@ var last_direction = Vector3.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var instructions
 
 var is_carrying = false
+var can_open_shop = false
+var in_menu = false
+
 var current_highlight: Node3D
 var dropoff_pipe: OutputPipe
+
+func _ready():
+	GameEvents.open_shop.connect(_open_shop)
+	GameEvents.close_shop.connect(_close_shop)
+
+func _open_shop():
+	in_menu = true
+func _close_shop():
+	in_menu = false
+
+func send_hero(hero):
+	GameEvents.send_hero(dropoff_pipe.slot, hero.id)
+	hero.queue_free()
 
 func try_interaction():
 	# Check if there is interactable objects. if not then throw the item
 	if dropoff_pipe:
-		current_highlight.queue_free()
+		send_hero(current_highlight)
 		current_highlight = null
 		is_carrying = false
 		return
+
 	var body = current_highlight as RigidBody3D
 	body.freeze = false
 	body.follow_component.target = null
@@ -47,20 +65,34 @@ func try_pickup():
 	GameEvents.emit_new_highligh(current_highlight)
 
 func handle_action():
+	if instructions != null:
+		instructions.queue_free()
+		instructions = null
+		add_child(instructions_screen_scene.instantiate())
+		return
 	if is_carrying:
 		try_interaction()
-	else:
-		try_pickup()
+		return
+
+	try_pickup()
+
+	if not is_carrying and can_open_shop:
+		GameEvents.emit_open_shop()
+		
+
 
 func _process(delta):
-	# Handle pickup
-	if Input.is_action_just_pressed("Action"):
-		handle_action()
+
 	
 	if global_position.y < -10:
 		global_position = Vector3(0,1,0)
 
-	
+	if in_menu:
+		return
+
+	# Handle pickup
+	if Input.is_action_just_pressed("ui_accept"):
+		handle_action()	
 	if is_carrying:
 		return
 	var current_distance = 10000000
@@ -81,10 +113,11 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	if in_menu:
+		return
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
