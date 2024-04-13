@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csgg6rc81txe7"]
+
+[ext_resource type="Script" path="res://scenes/components/follow_target.gd" id="1_ohjgc"]
+
+[node name="FollowTarget" type="Node3D"]
+script = ExtResource("1_ohjgc")

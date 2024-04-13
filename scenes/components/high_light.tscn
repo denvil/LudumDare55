@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu8jfxnb3y57q"]
+
+[ext_resource type="Script" path="res://scenes/components/high_light.gd" id="1_jf5uh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c4hxm"]
+
+[node name="HighLight" type="Node3D"]
+script = ExtResource("1_jf5uh")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.2, 0, 0, 0, 0.3, 0, 1.14468, 0)
+mesh = SubResource("BoxMesh_c4hxm")

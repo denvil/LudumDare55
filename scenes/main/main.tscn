@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4eyvnx1v3ooj"]
+[gd_scene load_steps=13 format=3 uid="uid://b4eyvnx1v3ooj"]
 
-[ext_resource type="PackedScene" uid="uid://ckjnskd75oa5a" path="res://scenes/sandbox/player.tscn" id="1_017ut"]
+[ext_resource type="PackedScene" uid="uid://ckjnskd75oa5a" path="res://scenes/game_objects/player/player.tscn" id="1_017ut"]
 [ext_resource type="Shader" path="res://scenes/sandbox/edge.gdshader" id="2_0wb7c"]
+[ext_resource type="PackedScene" uid="uid://spf5emly7vw1" path="res://scenes/game_objects/hero/hero.tscn" id="3_mmml3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2nhaq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -79,3 +80,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Items" type="Node3D" parent="." groups=["SceneItems"]]
+
+[node name="Hero" parent="Items" instance=ExtResource("3_mmml3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2)
+
+[node name="Hero2" parent="Items" instance=ExtResource("3_mmml3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50583, 1, -2)
