@@ -13,5 +13,5 @@ func _ready():
 func _process(delta):
 	if target == null or not is_active:
 		return
-	var distance = control.global_position.distance_squared_to(target.global_position)
+	#var distance = control.global_position.distance_squared_to(target.global_position)
 	control.global_position = control.global_position.slerp(target.global_position,  1 - exp(-acceleration * delta))

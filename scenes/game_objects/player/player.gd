@@ -6,6 +6,9 @@ const JUMP_VELOCITY = 4.5
 @onready var visuals = $Visuals
 @onready var pickup_circle = $PickupCircle
 @onready var carry_slot = $CarrySlot
+@onready var animation_player = %AnimationPlayer
+@onready var run_particles = %RunParticles
+
 
 var push_force = 0.9
 var rotation_speed = 10.0
@@ -34,6 +37,7 @@ func _close_shop():
 
 func send_hero(hero):
 	GameEvents.send_hero(dropoff_pipe.slot, hero.id)
+	dropoff_pipe.play_send_animation()
 	hero.queue_free()
 
 func try_interaction():
@@ -62,7 +66,7 @@ func try_pickup():
 	body.follow_component.is_active = true
 	# Tween it to carry position
 	is_carrying = true
-	GameEvents.emit_new_highligh(current_highlight)
+	GameEvents.emit_new_highligh(null)
 
 func handle_action():
 	if instructions != null:
@@ -136,6 +140,17 @@ func _physics_process(delta):
 		last_direction = direction
 		# Slerp lookat rotation of visuals
 		visuals.rotation.y =  lerp_angle(visuals.rotation.y, atan2(direction.x, direction.z), delta*rotation_speed)
+		# loop animation player
+		animation_player.play("Run")
+		run_particles.emitting = true
 
+	else:
+		animation_player.play("Idle")
+		run_particles.emitting = false
 
+	
 
+func play_step():
+	var steps = ($Steps as AudioStreamPlayer3D)
+	if not steps.playing:
+		steps.play()

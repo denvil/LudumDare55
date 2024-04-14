@@ -1,7 +1,9 @@
 extends Node
-
-@export var base_decay_rate: float = 0.015
+class_name GameManager
+@export var base_decay_rate: float = 0.4
 @export var base_progress_rate: float = 0.02
+@onready var victory_sound = $"../VictorySound"
+@onready var failure_sound = $"../FailureSound"
 
 @export var event_db: EventPool
 @export var hero_pool: HeroPool
@@ -10,7 +12,8 @@ var shop_screen_scene = preload("res://scenes/ui/portal_shop.tscn")
 signal game_over
 @onready var summon_timer = $SummonTimer
 var hero_scene = preload("res://scenes/game_objects/hero/hero.tscn")
-@onready var input = $"../Input"
+@onready var input = $"../Interactions/Input"
+
 var id_counter = 0
 var active_heroes: Array[Hero]
 var active_events: Array = [null, null, null]
@@ -70,6 +73,7 @@ func update_quests():
 	for x in range(3):
 		var event = event_db.events.filter(func(event:Event): return event.difficulty <= current_difficulty_cutoff).pick_random()
 		add_quest(event)
+	
 	# Update heroes
 	while len(available_heroes) < 3:
 		var new_hero = hero_pool.heropool.pick_random()
@@ -140,8 +144,8 @@ func return_hero(hero):
 	var items_layer = get_tree().get_first_node_in_group("SceneItems")
 	items_layer.add_child(hero_inst)
 	hero_inst.id = hero.id
-	hero_inst.global_position = input.global_position
-	hero_inst.apply_central_impulse(Vector3.RIGHT*3 + Vector3.UP*3)
+	hero_inst.global_position = input.global_position+Vector3.UP*3
+	hero_inst.apply_central_impulse(Vector3.RIGHT*5 + Vector3.UP*5)
 
 func event_succeed(event):
 	print("Event succeed", event)
@@ -154,9 +158,18 @@ func event_succeed(event):
 	current_gold += (event["event"] as Event).reward
 	update_gold()
 	update_quests()
+	current_difficulty_cutoff += 0.1
+	victory_sound.play()
 	
 func event_failed(event):
-	print("Event failed", event)
+	current_gold -= (event["event"] as Event).reward * (event["event"] as Event).difficulty
+	# Remove event
+	remove_event(event)
+	update_gold()
+	update_quests()
+	failure_sound.play()
+	if current_gold < 0:
+		end_game()
 
 func progress_event(event):
 	if event == null:
@@ -182,3 +195,5 @@ func _on_level_timer_timeout():
 	for event in active_events:
 		progress_event(event)
 		
+func end_game():
+	pass

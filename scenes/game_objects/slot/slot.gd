@@ -92,6 +92,7 @@ func _update_slot(event: Event, slot: int):
 	(%ProgressGood as Node3D).scale.x = 0
 	(%ProgressBad as Node3D).scale.x = 0
 	%"Progress text".text=""
+	%Progress.text = "0%"
 
 func _on_update_quest(slot: int, event):
 	if slot != slot_id:
@@ -100,6 +101,7 @@ func _on_update_quest(slot: int, event):
 	if event == null:
 		details.hide()
 		return
+	%Progress.text = str(roundi(event["progress"]*100))+"%"
 	(%ProgressGood as Node3D).scale.x = max(0, event["progress"])
 	(%ProgressBad as Node3D).scale.x = min(event["progress"], 0)
 	if event["current_hero"] != null:

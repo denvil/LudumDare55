@@ -1,0 +1,132 @@
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://conwnfrbwajjf"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_heomj"]
+parameter_name = "GradientEdge"
+hint = 1
+max = 5.0
+default_value_enabled = true
+default_value = 1.5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_re4vf"]
+output_port_for_preview = 2
+expanded_output_ports = [0]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_ugd8y"]
+output_port_for_preview = 0
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_c0pfi"]
+parameter_name = "BottomGradient"
+hint = 1
+max = 5.0
+default_value_enabled = true
+default_value = 1.5
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_juopy"]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorDistance" id="VisualShaderNodeVectorDistance_8phnb"]
+default_input_values = [0, Vector2(0.5, 0.5), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_8yphk"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_u7w1m"]
+parameter_name = "Color"
+default_value_enabled = true
+default_value = Color(0.0884784, 0.311083, 1, 1)
+
+[sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_7oa6o"]
+output_port_for_preview = 0
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_t8m30"]
+output_port_for_preview = 0
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 Color : source_color = vec4(0.088478, 0.311083, 1.000000, 1.000000);
+uniform float GradientEdge : hint_range(0, 5) = 1.5;
+uniform float BottomGradient : hint_range(0, 5) = 1.5;
+
+
+
+void fragment() {
+// ColorParameter:4
+	vec4 n_out4p0 = Color;
+
+
+// FloatParameter:10
+	float n_out10p0 = GradientEdge;
+
+
+// Input:3
+	vec2 n_out3p0 = UV;
+
+
+// Distance:2
+	vec2 n_in2p0 = vec2(0.50000, 0.50000);
+	float n_out2p0 = distance(n_in2p0, n_out3p0);
+
+
+// SmoothStep:7
+	float n_in7p1 = 0.00000;
+	float n_out7p0 = smoothstep(n_out10p0, n_in7p1, n_out2p0);
+
+
+// VectorOp:9
+	vec3 n_out9p0 = vec3(n_out4p0.xyz) * vec3(n_out7p0);
+
+
+// FloatParameter:13
+	float n_out13p0 = BottomGradient;
+
+
+// Input:11
+	vec2 n_out11p0 = SCREEN_UV;
+	float n_out11p2 = n_out11p0.g;
+
+
+// SmoothStep:12
+	float n_in12p1 = 0.00000;
+	float n_out12p0 = smoothstep(n_out13p0, n_in12p1, n_out11p2);
+
+
+// VectorOp:14
+	vec3 n_out14p0 = n_out9p0 * vec3(n_out12p0);
+
+
+// Output:0
+	ALBEDO = n_out14p0;
+
+
+}
+"
+nodes/fragment/0/position = Vector2(640, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeVectorDistance_8phnb")
+nodes/fragment/2/position = Vector2(-920, 640)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_8yphk")
+nodes/fragment/3/position = Vector2(-1280, 740)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_u7w1m")
+nodes/fragment/4/position = Vector2(-500, 160)
+nodes/fragment/7/node = SubResource("VisualShaderNodeSmoothStep_7oa6o")
+nodes/fragment/7/position = Vector2(-660, 400)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_t8m30")
+nodes/fragment/9/position = Vector2(40, 140)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_heomj")
+nodes/fragment/10/position = Vector2(-1020, 360)
+nodes/fragment/11/node = SubResource("VisualShaderNodeInput_re4vf")
+nodes/fragment/11/position = Vector2(-600, 880)
+nodes/fragment/12/node = SubResource("VisualShaderNodeSmoothStep_ugd8y")
+nodes/fragment/12/position = Vector2(-60, 520)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_c0pfi")
+nodes/fragment/13/position = Vector2(-420, 540)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_juopy")
+nodes/fragment/14/position = Vector2(340, 220)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 1, 2, 0, 7, 2, 4, 0, 9, 0, 7, 0, 9, 1, 10, 0, 7, 0, 14, 0, 0, 0, 12, 0, 14, 1, 9, 0, 14, 0, 11, 2, 12, 2, 13, 0, 12, 0)

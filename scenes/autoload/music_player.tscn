@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmyd6jkrinsar"]
+
+[ext_resource type="AudioStream" uid="uid://k1fly27h8bj8" path="res://assets/ld55.mp3" id="1_y05ns"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_y05ns")
+autoplay = true
+bus = &"music"
+
+[node name="Timer" type="Timer" parent="."]

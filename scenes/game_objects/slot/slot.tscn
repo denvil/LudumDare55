@@ -62,16 +62,24 @@ text = "500g"
 font = ExtResource("1_r4w8g")
 font_size = 62
 
+[node name="Progress" type="Label3D" parent="Details"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.34584, 1.032)
+modulate = Color(1, 0.894118, 0.341176, 1)
+text = "500g"
+font = ExtResource("1_r4w8g")
+font_size = 62
+
 [node name="ProgressGood" type="MeshInstance3D" parent="Details"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.0802546, 0, 1, -3.50804e-09, -0.0328767, -1.484, 1.03186)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.0802546, 0, 1, -3.50804e-09, -0.0328767, -1.62249, 1.03186)
 material_override = SubResource("StandardMaterial3D_ln6kv")
 mesh = SubResource("PlaneMesh_vxkha")
 skeleton = NodePath("../..")
 
 [node name="ProgressBad" type="MeshInstance3D" parent="Details"]
 unique_name_in_owner = true
-transform = Transform3D(-0.91, 0, 0, 0, -4.37114e-08, 0.08, 0, 1, 3.49691e-09, -0.0328767, -1.484, 1.03186)
+transform = Transform3D(-0.91, 0, 0, 0, -4.37114e-08, 0.08, 0, 1, 3.49691e-09, -0.0328767, -1.62249, 1.03186)
 material_override = SubResource("StandardMaterial3D_nhc65")
 mesh = SubResource("PlaneMesh_vxkha")
 skeleton = NodePath("../..")
